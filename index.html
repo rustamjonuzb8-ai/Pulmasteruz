@@ -12,21 +12,21 @@
             --gold: #dfa645;
             --gold-light: #f3c77c;
             --text-color: #ffffff;
-            --text-dim: #aaaaaa;
+            --text-dim: #888888;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding: 20px 16px 40px 16px;
+            padding: 16px 16px 40px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -35,37 +35,37 @@
 
         .header {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .header h1 {
             color: var(--gold);
-            font-size: 26px;
+            font-size: 24px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
         .header p {
             color: var(--text-dim);
-            font-size: 14px;
-            margin-top: 4px;
+            font-size: 13px;
+            margin-top: 2px;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid rgba(223, 166, 69, 0.2);
             border-radius: 16px;
-            padding: 20px;
+            padding: 16px;
             width: 100%;
             max-width: 420px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.4);
         }
 
         .section-title {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--gold-light);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -74,14 +74,14 @@
         .tariff-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 8px;
         }
 
         .tariff-btn {
             background: #262626;
             border: 1px solid #333;
             border-radius: 12px;
-            padding: 14px 8px;
+            padding: 12px 6px;
             color: var(--text-color);
             cursor: pointer;
             text-align: center;
@@ -91,16 +91,16 @@
         .tariff-btn.active {
             border-color: var(--gold);
             background: rgba(223, 166, 69, 0.15);
-            box-shadow: 0 0 12px rgba(223, 166, 69, 0.3);
+            box-shadow: 0 0 10px rgba(223, 166, 69, 0.3);
         }
 
         .tariff-btn h4 {
-            font-size: 14px;
-            margin-bottom: 6px;
+            font-size: 13px;
+            margin-bottom: 4px;
         }
 
         .tariff-btn span {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             color: var(--gold);
         }
@@ -108,7 +108,7 @@
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .input-row {
@@ -120,19 +120,27 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
         }
 
         .input-field label {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-dim);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
         input {
             background: #262626;
             border: 1px solid #333;
             border-radius: 10px;
-            padding: 12px;
+            padding: 12px 36px 12px 12px; /* o'ng tarafi '×' tugmasi uchun ochiq qoldirildi */
             color: #fff;
             font-size: 16px;
             outline: none;
@@ -143,22 +151,51 @@
             border-color: var(--gold);
         }
 
+        /* Tozalash (×) tugmasi dizayni */
+        .clear-btn {
+            position: absolute;
+            right: 10px;
+            background: #444;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .clear-btn:active {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .or-divider {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
         .result-box {
             background: linear-gradient(145deg, #1f1a10, #141414);
             border: 1px solid var(--gold);
             border-radius: 16px;
-            padding: 20px;
+            padding: 16px;
             width: 100%;
             max-width: 420px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .result-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 14px;
+            margin-bottom: 6px;
+            font-size: 13px;
             color: var(--text-dim);
         }
 
@@ -168,22 +205,22 @@
         }
 
         .total-price {
-            margin-top: 12px;
-            padding-top: 12px;
+            margin-top: 10px;
+            padding-top: 10px;
             border-top: 1px dashed rgba(223, 166, 69, 0.4);
         }
 
         .total-price label {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--gold-light);
             text-transform: uppercase;
         }
 
         .total-price div {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 800;
             color: var(--gold);
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .contact-btn {
@@ -193,8 +230,8 @@
             color: #000;
             border: none;
             border-radius: 12px;
-            padding: 16px;
-            font-size: 16px;
+            padding: 14px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             text-transform: uppercase;
@@ -240,17 +277,28 @@
         <div class="input-group">
             <div class="input-field">
                 <label>Tayyor Maydon (m²)</label>
-                <input type="number" id="sqm" placeholder="Masalan: 50" oninput="calculateFromSqm()">
+                <div class="input-wrapper">
+                    <input type="number" id="sqm" placeholder="Masalan: 50" oninput="handleInput('sqm')">
+                    <button class="clear-btn" id="clear-sqm" onclick="clearInput('sqm')">✕</button>
+                </div>
             </div>
-            <div style="text-align: center; color: var(--text-dim); font-size: 12px;">YOKI</div>
+            
+            <div class="or-divider">YOKI</div>
+
             <div class="input-row">
                 <div class="input-field">
                     <label>Eni (m)</label>
-                    <input type="number" id="width" placeholder="0" oninput="calculateFromDimensions()">
+                    <div class="input-wrapper">
+                        <input type="number" id="width" placeholder="0" oninput="handleInput('width')">
+                        <button class="clear-btn" id="clear-width" onclick="clearInput('width')">✕</button>
+                    </div>
                 </div>
                 <div class="input-field">
                     <label>Uzunligi (m)</label>
-                    <input type="number" id="length" placeholder="0" oninput="calculateFromDimensions()">
+                    <div class="input-wrapper">
+                        <input type="number" id="length" placeholder="0" oninput="handleInput('length')">
+                        <button class="clear-btn" id="clear-length" onclick="clearInput('length')">✕</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -277,7 +325,6 @@
         let currentRate = 3;
         let currentArea = 0;
 
-        // Telegram Mini App kontekstini yuklash
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
@@ -291,20 +338,48 @@
             updateTotal();
         }
 
-        function calculateFromSqm() {
-            const sqmInput = parseFloat(document.getElementById('sqm').value) || 0;
-            document.getElementById('width').value = '';
-            document.getElementById('length').value = '';
-            currentArea = sqmInput;
+        function handleInput(fieldId) {
+            const input = document.getElementById(fieldId);
+            const clearBtn = document.getElementById('clear-' + fieldId);
+            
+            // Raqam kiritilganda '×' tugmasini ko'rsatish
+            if (input.value.length > 0) {
+                clearBtn.style.display = 'flex';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+
+            if (fieldId === 'sqm') {
+                const sqmInput = parseFloat(input.value) || 0;
+                document.getElementById('width').value = '';
+                document.getElementById('length').value = '';
+                document.getElementById('clear-width').style.display = 'none';
+                document.getElementById('clear-length').style.display = 'none';
+                currentArea = sqmInput;
+            } else {
+                document.getElementById('sqm').value = '';
+                document.getElementById('clear-sqm').style.display = 'none';
+                const width = parseFloat(document.getElementById('width').value) || 0;
+                const length = parseFloat(document.getElementById('length').value) || 0;
+                currentArea = width * length;
+            }
             updateTotal();
         }
 
-        function calculateFromDimensions() {
-            const width = parseFloat(document.getElementById('width').value) || 0;
-            const length = parseFloat(document.getElementById('length').value) || 0;
-            document.getElementById('sqm').value = '';
-            currentArea = width * length;
+        function clearInput(fieldId) {
+            const input = document.getElementById(fieldId);
+            input.value = '';
+            document.getElementById('clear-' + fieldId).style.display = 'none';
+            
+            if (fieldId === 'sqm') {
+                currentArea = 0;
+            } else {
+                const width = parseFloat(document.getElementById('width').value) || 0;
+                const length = parseFloat(document.getElementById('length').value) || 0;
+                currentArea = width * length;
+            }
             updateTotal();
+            input.focus();
         }
 
         function updateTotal() {
