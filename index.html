@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>POL MASTER — Narx Hisoblagich</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --gold: #dfa645;
+            --gold-light: #f3c77c;
+            --text-color: #ffffff;
+            --text-dim: #aaaaaa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px 16px 40px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            color: var(--gold);
+            font-size: 26px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(223, 166, 69, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            max-width: 420px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+
+        .section-title {
+            font-size: 15px;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tariff-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .tariff-btn {
+            background: #262626;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 14px 8px;
+            color: var(--text-color);
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.25s ease;
+        }
+
+        .tariff-btn.active {
+            border-color: var(--gold);
+            background: rgba(223, 166, 69, 0.15);
+            box-shadow: 0 0 12px rgba(223, 166, 69, 0.3);
+        }
+
+        .tariff-btn h4 {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .tariff-btn span {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--gold);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-field {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .input-field label {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        input {
+            background: #262626;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 12px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            width: 100%;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+        }
+
+        .result-box {
+            background: linear-gradient(145deg, #1f1a10, #141414);
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-dim);
+        }
+
+        .result-row span.val {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .total-price {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(223, 166, 69, 0.4);
+        }
+
+        .total-price label {
+            font-size: 13px;
+            color: var(--gold-light);
+            text-transform: uppercase;
+        }
+
+        .total-price div {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gold);
+            margin-top: 4px;
+        }
+
+        .contact-btn {
+            width: 100%;
+            max-width: 420px;
+            background: linear-gradient(135deg, #dfa645, #b88228);
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(223, 166, 69, 0.3);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .contact-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>POL MASTER</h1>
+        <p>Pol silliqlash va ishlov berish xizmati</p>
+    </div>
+
+    <div class="card">
+        <div class="section-title">1. Tarifni Tanlang</div>
+        <div class="tariff-grid">
+            <div class="tariff-btn active" onclick="selectTariff(3, this)">
+                <h4>Oddiy</h4>
+                <span>3$ / m²</span>
+            </div>
+            <div class="tariff-btn" onclick="selectTariff(5, this)">
+                <h4>Standart</h4>
+                <span>5$ / m²</span>
+            </div>
+            <div class="tariff-btn" onclick="selectTariff(9, this)">
+                <h4>Premium</h4>
+                <span>9$ / m²</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">2. Maydon O'lchamini Kiritish</div>
+        <div class="input-group">
+            <div class="input-field">
+                <label>Tayyor Maydon (m²)</label>
+                <input type="number" id="sqm" placeholder="Masalan: 50" oninput="calculateFromSqm()">
+            </div>
+            <div style="text-align: center; color: var(--text-dim); font-size: 12px;">YOKI</div>
+            <div class="input-row">
+                <div class="input-field">
+                    <label>Eni (m)</label>
+                    <input type="number" id="width" placeholder="0" oninput="calculateFromDimensions()">
+                </div>
+                <div class="input-field">
+                    <label>Uzunligi (m)</label>
+                    <input type="number" id="length" placeholder="0" oninput="calculateFromDimensions()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="result-box">
+        <div class="result-row">
+            <span>Umumiy maydon:</span>
+            <span class="val" id="res-area">0 m²</span>
+        </div>
+        <div class="result-row">
+            <span>Tanlangan tarif:</span>
+            <span class="val" id="res-rate">3$ / m²</span>
+        </div>
+        <div class="total-price">
+            <label>Jami Hisoblangan Narx</label>
+            <div id="res-total">0 $</div>
+        </div>
+    </div>
+
+    <a id="contactLink" href="https://t.me/PolMasterUzBot" class="contact-btn">Usta Bilan Bog'lanish</a>
+
+    <script>
+        let currentRate = 3;
+        let currentArea = 0;
+
+        // Telegram Mini App kontekstini yuklash
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();
+            window.Telegram.WebApp.expand();
+        }
+
+        function selectTariff(rate, element) {
+            currentRate = rate;
+            document.querySelectorAll('.tariff-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('res-rate').innerText = rate + '$ / m²';
+            updateTotal();
+        }
+
+        function calculateFromSqm() {
+            const sqmInput = parseFloat(document.getElementById('sqm').value) || 0;
+            document.getElementById('width').value = '';
+            document.getElementById('length').value = '';
+            currentArea = sqmInput;
+            updateTotal();
+        }
+
+        function calculateFromDimensions() {
+            const width = parseFloat(document.getElementById('width').value) || 0;
+            const length = parseFloat(document.getElementById('length').value) || 0;
+            document.getElementById('sqm').value = '';
+            currentArea = width * length;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const total = Math.round(currentArea * currentRate);
+            document.getElementById('res-area').innerText = currentArea + ' m²';
+            document.getElementById('res-total').innerText = total + ' $';
+        }
+    </script>
+</body>
+</html>
